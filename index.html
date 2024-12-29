@@ -72,39 +72,35 @@
     <!-- Load Supabase script with defer attribute -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@latest" defer></script>
     <!-- Ensure the custom script is loaded after the Supabase script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Ensure Supabase is initialized correctly
-            const supabaseUrl = 'https://khhpbnpdtkvymrycvtgi.supabase.co';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoaHBibnBkdGt2eW1yeWN2dGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUyODQzNzAsImV4cCI6MjA1MDg2MDM3MH0.RGTy42QZUyb-cdmtWnzLa199u4N20kLEaVmC9yoPtus';
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ensure Supabase is initialized correctly
+        const supabaseUrl = 'https://khhpbnpdtkvymrycvtgi.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoaHBibnBkdGt2eW1yeWN2dGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUyODQzNzAsImV4cCI6MjA1MDg2MDM3MH0.RGTy42QZUyb-cdmtWnzLa199u4N20kLEaVmC9yoPtus';
 
-            // Wait for Supabase script to be fully loaded
-            if (window.supabase) {
-                const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        // Initialize Supabase client
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-                document.getElementById('message-form').addEventListener('submit', async (event) => {
-                    event.preventDefault();
-                    const content = document.getElementById('content').value;
+        document.getElementById('message-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const content = document.getElementById('content').value;
 
-                    try {
-                        const { data, error } = await supabase
-                            .from('messages')
-                            .insert([{ content }]);
-                        
-                        if (error) {
-                            console.error('Error:', error);
-                            alert('Failed to submit message. Please try again.');
-                        } else {
-                            alert('Message submitted successfully!');
-                        }
-                    } catch (err) {
-                        console.error('Unexpected error:', err);
-                    }
-                });
-            } else {
-                console.error('Supabase script not loaded');
+            try {
+                const { data, error } = await supabase
+                    .from('messages')
+                    .insert([{ content }]);
+                
+                if (error) {
+                    console.error('Error:', error);
+                    alert('Failed to submit message. Please try again.');
+                } else {
+                    alert('Message submitted successfully!');
+                }
+            } catch (err) {
+                console.error('Unexpected error:', err);
             }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
