@@ -73,6 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@latest" defer></script>
     <!-- Ensure the custom script is loaded after the Supabase script -->
 <script>
+import { createClient } from '@supabase/supabase-js'
     document.addEventListener('DOMContentLoaded', () => {
         // Ensure Supabase is initialized correctly
         const supabaseUrl = 'https://khhpbnpdtkvymrycvtgi.supabase.co';
